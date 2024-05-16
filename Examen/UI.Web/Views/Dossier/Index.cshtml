@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ApplicationCore.Domain.Dossier>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form asp-action="index">
+
+<fieldset>
+    <legend> Recherche</legend>
+    Saisir un login :
+    <input type="text" name="nomSearch" />
+    <input type="submit" value="Search" />
+
+</fieldset>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDepot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.frais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.clos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avocat_FK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client_FK)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDepot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.frais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avocat_FK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client_FK)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a asp-controller="Avocat" asp-action="Details" asp-route-id="@item.Avocat_FK">avocatdetail</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
